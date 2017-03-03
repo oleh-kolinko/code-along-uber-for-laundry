@@ -12,8 +12,8 @@ dotenv.config();//init dotenv
 
 //connect DB
 const mongoose = require('mongoose');
-mongoose.connect();
-
+mongoose.connect(process.env.MONGODB_URI);
+// mongoose.connect('mongodb://localhost/uber-for-laundry');
 
 var app = express();
 
