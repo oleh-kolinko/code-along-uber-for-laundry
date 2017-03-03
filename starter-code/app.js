@@ -6,8 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const expressLayouts = require('express-ejs-layouts');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
+//connect envirmental variables
+const dotenv = require('dotenv');
+dotenv.config();//init dotenv
+
+//connect DB
+const mongoose = require('mongoose');
+mongoose.connect();
+
 
 var app = express();
 
@@ -25,6 +31,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//ROUTES GOES HERE:
+var index = require('./routes/index');
+var users = require('./routes/users');
 
 app.use('/', index);
 app.use('/users', users);
